@@ -118,11 +118,11 @@ function determineSeparator(string $path): string {
 }
 
 function replaceForWindows(): array {
-    return preg_split('/\\r\\n|\\r|\\n/', run('dir /S /B * | findstr /v /i .git\ | findstr /v /i vendor | findstr /v /i '.basename(__FILE__).' | findstr /r /i /M /F:/ ":author :vendor :package VendorName skeleton migration_table_name vendor_name vendor_slug author@domain.com"'));
+    return preg_split('/\\r\\n|\\r|\\n/', run('dir /S /B * | findstr /v /i .git\ | findstr /v /i vendor | findstr /v /i '.basename(__FILE__).' | findstr /r /i /M /F:/ ":author :vendor :package LaravelFreelancerNL LaravelIndexNow migration_table_name vendor_name vendor_slug info@laravel-freelancer.nl"'));
 }
 
 function replaceForAllOtherOSes(): array {
-    return explode(PHP_EOL, run('grep -E -r -l -i ":author|:vendor|:package|VendorName|skeleton|migration_table_name|vendor_name|vendor_slug|author@domain.com" --exclude-dir=vendor ./* ./.github/* | grep -v ' . basename(__FILE__)));
+    return explode(PHP_EOL, run('grep -E -r -l -i ":author|:vendor|:package|LaravelFreelancerNL|LaravelIndexNow|migration_table_name|vendor_name|vendor_slug|info@laravel-freelancer.nl" --exclude-dir=vendor ./* ./.github/* | grep -v ' . basename(__FILE__)));
 }
 
 $gitName = run('git config user.name');
@@ -136,10 +136,10 @@ $usernameGuess = dirname($usernameGuess);
 $usernameGuess = basename($usernameGuess);
 $authorUsername = ask('Author username', $usernameGuess);
 
-$vendorName = ask('Vendor name', $authorUsername);
-$vendorSlug = slugify($vendorName);
-$vendorNamespace = ucwords($vendorName);
-$vendorNamespace = ask('Vendor namespace', $vendorNamespace);
+$LaravelFreelancerNL = ask('Vendor name', $authorUsername);
+$vendorSlug = slugify($LaravelFreelancerNL);
+$LaravelFreelancerNLspace = ucwords($LaravelFreelancerNL);
+$LaravelFreelancerNLspace = ask('Vendor namespace', $LaravelFreelancerNLspace);
 
 $currentDirectory = getcwd();
 $folderName = basename($currentDirectory);
@@ -159,9 +159,9 @@ $useUpdateChangelogWorkflow = confirm('Use automatic changelog updater workflow?
 
 writeln('------');
 writeln("Author     : {$authorName} ({$authorUsername}, {$authorEmail})");
-writeln("Vendor     : {$vendorName} ({$vendorSlug})");
+writeln("Vendor     : {$LaravelFreelancerNL} ({$vendorSlug})");
 writeln("Package    : {$packageSlug} <{$description}>");
-writeln("Namespace  : {$vendorNamespace}\\{$className}");
+writeln("Namespace  : {$LaravelFreelancerNLspace}\\{$className}");
 writeln("Class name : {$className}");
 writeln("---");
 writeln("Packages & Utilities");
@@ -180,29 +180,29 @@ $files = (str_starts_with(strtoupper(PHP_OS), 'WIN') ? replaceForWindows() : rep
 
 foreach ($files as $file) {
     replace_in_file($file, [
-        ':author_name' => $authorName,
-        ':author_username' => $authorUsername,
-        'author@domain.com' => $authorEmail,
-        ':vendor_name' => $vendorName,
-        ':vendor_slug' => $vendorSlug,
-        'VendorName' => $vendorNamespace,
-        ':package_name' => $packageName,
-        ':package_slug' => $packageSlug,
-        ':package_slug_without_prefix' => $packageSlugWithoutPrefix,
-        'Skeleton' => $className,
-        'skeleton' => $packageSlug,
+        'Bas' => $authorName,
+        'LaravelFreelancerNL' => $authorUsername,
+        'info@laravel-freelancer.nl' => $authorEmail,
+        'LaravelFreelancerNL' => $LaravelFreelancerNL,
+        'LaravelFreelancerNL' => $vendorSlug,
+        'LaravelFreelancerNL' => $LaravelFreelancerNLspace,
+        'laravel-indexnow' => $packageName,
+        'laravel-indexnow' => $packageSlug,
+        'laravel-indexnow_without_prefix' => $packageSlugWithoutPrefix,
+        'LaravelIndexNow' => $className,
+        'LaravelIndexNow' => $packageSlug,
         'migration_table_name' => title_snake($packageSlug),
         'variable' => $variableName,
         ':package_description' => $description,
     ]);
 
     match (true) {
-        str_contains($file, determineSeparator('src/Skeleton.php')) => rename($file, determineSeparator('./src/' . $className . '.php')),
-        str_contains($file, determineSeparator('src/SkeletonServiceProvider.php')) => rename($file, determineSeparator('./src/' . $className . 'ServiceProvider.php')),
-        str_contains($file, determineSeparator('src/Facades/Skeleton.php')) => rename($file, determineSeparator('./src/Facades/' . $className . '.php')),
-        str_contains($file, determineSeparator('src/Commands/SkeletonCommand.php')) => rename($file, determineSeparator('./src/Commands/' . $className . 'Command.php')),
-        str_contains($file, determineSeparator('database/migrations/create_skeleton_table.php.stub')) => rename($file, determineSeparator('./database/migrations/create_' . title_snake($packageSlugWithoutPrefix) . '_table.php.stub')),
-        str_contains($file, determineSeparator('config/skeleton.php')) => rename($file, determineSeparator('./config/' . $packageSlugWithoutPrefix . '.php')),
+        str_contains($file, determineSeparator('src/LaravelIndexNow.php')) => rename($file, determineSeparator('./src/' . $className . '.php')),
+        str_contains($file, determineSeparator('src/LaravelIndexNowServiceProvider.php')) => rename($file, determineSeparator('./src/' . $className . 'ServiceProvider.php')),
+        str_contains($file, determineSeparator('src/Facades/LaravelIndexNow.php')) => rename($file, determineSeparator('./src/Facades/' . $className . '.php')),
+        str_contains($file, determineSeparator('src/Commands/LaravelIndexNowCommand.php')) => rename($file, determineSeparator('./src/Commands/' . $className . 'Command.php')),
+        str_contains($file, determineSeparator('database/migrations/create_LaravelIndexNow_table.php.stub')) => rename($file, determineSeparator('./database/migrations/create_' . title_snake($packageSlugWithoutPrefix) . '_table.php.stub')),
+        str_contains($file, determineSeparator('config/LaravelIndexNow.php')) => rename($file, determineSeparator('./config/' . $packageSlugWithoutPrefix . '.php')),
         str_contains($file, 'README.md') => remove_readme_paragraphs($file),
         default => [],
     };
@@ -214,7 +214,7 @@ if (! $usePhpCsFixer) {
 }
 
 if (! $usePhpStan) {
-    safeUnlink(__DIR__ . '/phpstan.neon.dist');
+    safeUnlink(__DIR__ . '/phpstan.neon');
     safeUnlink(__DIR__ . '/phpstan-baseline.neon');
     safeUnlink(__DIR__ . '/.github/workflows/phpstan.yml');
 
