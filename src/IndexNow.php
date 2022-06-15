@@ -61,7 +61,6 @@ class IndexNow
         return SubmitUrlJob::dispatch($url)->delay(now()->addSeconds($delayInSeconds));
     }
 
-
     /**
      * @throws Exception
      */

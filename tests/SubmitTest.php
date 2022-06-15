@@ -32,7 +32,7 @@ it('submits an url', function () {
 it('submits an url with key location', function () {
     Http::fake();
 
-    config(['index-now.key-location' =>'index-now-']);
+    config(['index-now.key-location' => 'index-now-']);
 
     IndexNow::generateKey();
 
@@ -46,14 +46,13 @@ it('submits an url with key location', function () {
             . '&keyLocation=' . config('index-now.key-location')
             . '&url=' . urlencode('https://devechtschool.nl');
     });
-
 });
 
 
 it('submits multiple urls', function () {
     Http::fake();
 
-    config(['index-now.key-location' =>'index-now-']);
+    config(['index-now.key-location' => 'index-now-']);
 
     $urls = [
         'https://dejacht.nl',
