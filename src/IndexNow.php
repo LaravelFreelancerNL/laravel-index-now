@@ -5,18 +5,32 @@ declare(strict_types=1);
 namespace LaravelFreelancerNL\LaravelIndexNow;
 
 use Exception;
+use Illuminate\Foundation\Bus\PendingDispatch;
 use Illuminate\Http\Client\Response;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Str;
+use LaravelFreelancerNL\LaravelIndexNow\Exceptions\KeyFileDirectoryMissing;
 use LaravelFreelancerNL\LaravelIndexNow\Exceptions\TooManyUrlsException;
+use LaravelFreelancerNL\LaravelIndexNow\Jobs\SubmitUrlJob;
 
 class IndexNow
 {
+    /**
+     * @throws KeyFileDirectoryMissing
+     */
     public function generateKey(): string
     {
+        $prefix = config('index-now.key-location');
+
         $key = Str::uuid()->toString();
-        $filename = $key . '.txt';
+
+        $filename = $prefix . $key . '.txt';
+
+        if (! file_exists(public_path(dirname($filename)))) {
+            throw new KeyFileDirectoryMissing();
+        }
+
 
         File::put(public_path() . "/" . $filename, $key);
 
@@ -35,6 +49,18 @@ class IndexNow
 
         return $this->submitUrls($url);
     }
+
+    /**
+     * @param string|string[] $url
+     * @throws Exception
+     */
+    public function delaySubmission(string|array $url, int $delayInSeconds = null): PendingDispatch
+    {
+        $delayInSeconds ??= config('index-now.delay');
+
+        return SubmitUrlJob::dispatch($url)->delay(now()->addSeconds($delayInSeconds));
+    }
+
 
     /**
      * @throws Exception
