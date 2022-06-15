@@ -56,7 +56,7 @@ class IndexNow
      */
     public function delaySubmission(string|array $url, int $delayInSeconds = null): PendingDispatch
     {
-        $delayInSeconds ??= config('index-now.delay');
+        $delayInSeconds ??= (int) config('index-now.delay');
 
         return SubmitUrlJob::dispatch($url)->delay(now()->addSeconds($delayInSeconds));
     }

@@ -1,3 +1,3 @@
 # Changelog
 
-All notable changes to `laravel-indexnow` will be documented in this file.
+All notable changes to `laravel-index-now` will be documented in this file.

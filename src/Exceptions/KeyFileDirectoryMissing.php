@@ -8,7 +8,9 @@ use Exception;
 
 class KeyFileDirectoryMissing extends Exception
 {
-    protected $code = 413;
+    /** @phpstan-ignore-next-line  */
+    protected $code = 404;
 
+    /** @phpstan-ignore-next-line  */
     protected $message = "The key location directory does not exist.";
 }

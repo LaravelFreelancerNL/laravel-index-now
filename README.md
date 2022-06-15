@@ -1,9 +1,9 @@
 # :package_description
 
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/LaravelFreelancerNL/laravel-indexnow.svg?style=flat-square)](https://packagist.org/packages/LaravelFreelancerNL/laravel-indexnow)
-[![GitHub Tests Action Status](https://img.shields.io/github/workflow/status/LaravelFreelancerNL/laravel-indexnow/run-tests?label=tests)](https://github.com/LaravelFreelancerNL/laravel-indexnow/actions?query=workflow%3Arun-tests+branch%3Amain)
-[![GitHub Code Style Action Status](https://img.shields.io/github/workflow/status/LaravelFreelancerNL/laravel-indexnow/Check%20&%20fix%20styling?label=code%20style)](https://github.com/LaravelFreelancerNL/laravel-indexnow/actions?query=workflow%3A"Check+%26+fix+styling"+branch%3Amain)
-[![Total Downloads](https://img.shields.io/packagist/dt/LaravelFreelancerNL/laravel-indexnow.svg?style=flat-square)](https://packagist.org/packages/LaravelFreelancerNL/laravel-indexnow)
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/LaravelFreelancerNL/laravel-index-now.svg?style=flat-square)](https://packagist.org/packages/LaravelFreelancerNL/laravel-index-now)
+[![GitHub Tests Action Status](https://img.shields.io/github/workflow/status/LaravelFreelancerNL/laravel-index-now/run-tests?label=tests)](https://github.com/LaravelFreelancerNL/laravel-index-now/actions?query=workflow%3Arun-tests+branch%3Amain)
+[![GitHub Code Style Action Status](https://img.shields.io/github/workflow/status/LaravelFreelancerNL/laravel-index-now/Check%20&%20fix%20styling?label=code%20style)](https://github.com/LaravelFreelancerNL/laravel-index-now/actions?query=workflow%3A"Check+%26+fix+styling"+branch%3Amain)
+[![Total Downloads](https://img.shields.io/packagist/dt/LaravelFreelancerNL/laravel-index-now.svg?style=flat-square)](https://packagist.org/packages/LaravelFreelancerNL/laravel-index-now)
 <!--delete-->
 ---
 This repo can be used to scaffold a Laravel package. Follow these steps to get started:
@@ -21,13 +21,13 @@ This is where your description should go. Limit it to a paragraph or two. Consid
 You can install the package via composer:
 
 ```bash
-composer require LaravelFreelancerNL/laravel-indexnow
+composer require LaravelFreelancerNL/laravel-index-now
 ```
 
 You can publish the config file with:
 
 ```bash
-php artisan vendor:publish --tag="laravel-indexnow-config"
+php artisan vendor:publish --tag="laravel-index-now-config"
 ```
 
 This is the contents of the published config file:

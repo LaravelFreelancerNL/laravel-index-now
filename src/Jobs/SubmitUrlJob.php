@@ -29,7 +29,7 @@ class SubmitUrlJob implements ShouldBeUnique, ShouldQueue
         $this->urls = $urls;
     }
 
-    public function handle()
+    public function handle(): void
     {
         IndexNow::submit($this->urls);
     }
@@ -41,6 +41,6 @@ class SubmitUrlJob implements ShouldBeUnique, ShouldQueue
      */
     public function uniqueId()
     {
-        return md5($this->urls);
+        return md5((string) json_encode($this->urls));
     }
 }

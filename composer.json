@@ -1,5 +1,5 @@
 {
-    "name": "laravel-freelancer-nl/laravel-indexnow",
+    "name": "laravel-freelancer-nl/laravel-index-now",
     "description": "Alert search engines of content changes. ",
     "keywords": [
         "indexnow",
@@ -7,7 +7,7 @@
         "seo",
         "search engines"
     ],
-    "homepage": "https://github.com/LaravelFreelancerNL/laravel-indexnow",
+    "homepage": "https://github.com/LaravelFreelancerNL/laravel-index-now",
     "license": "MIT",
     "authors": [
         {
