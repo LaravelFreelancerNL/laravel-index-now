@@ -1,9 +1,9 @@
 # Submit pages to search engines
 
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/laravel-freelancer-nl/laravel-index-now.svg?style=flat-square)](https://packagist.org/packages/LaravelFreelancerNL/laravel-index-now)
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/laravel-freelancer-nl/laravel-index-now.svg?style=flat-square)](https://packagist.org/packages/laravel-freelancer-nl/laravel-index-now)
 [![GitHub Tests Action Status](https://img.shields.io/github/workflow/status/LaravelFreelancerNL/laravel-index-now/run-tests?label=tests)](https://github.com/LaravelFreelancerNL/laravel-index-now/actions?query=workflow%3Arun-tests+branch%3Amain)
 [![GitHub Code Style Action Status](https://img.shields.io/github/workflow/status/LaravelFreelancerNL/laravel-index-now/Check%20&%20fix%20styling?label=code%20style)](https://github.com/LaravelFreelancerNL/laravel-index-now/actions?query=workflow%3A"Check+%26+fix+styling"+branch%3Amain)
-[![Total Downloads](https://img.shields.io/packagist/dt/laravel-freelancer-nl/laravel-index-now.svg?style=flat-square)](https://packagist.org/packages/LaravelFreelancerNL/laravel-index-now)
+[![Total Downloads](https://img.shields.io/packagist/dt/laravel-freelancer-nl/laravel-index-now.svg?style=flat-square)](https://packagist.org/packages/laravel-freelancer-nl/laravel-index-now)
 
 [IndexNow](https://www.indexnow.org) is an API created by Microsoft Bing & Yandex to allow you to submit page changes
 to their search engines quickly.  A submission to one search engine will automatically pass the submission on to the 
