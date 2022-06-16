@@ -60,7 +60,6 @@ it('has a key generation command', function () {
 });
 
 it('outputs the new key', function () {
-
     $this->artisan('index-now:generate-key')
         ->expectsOutput('The keyfile was generated. Please add the following key to your .env file:');
 });
