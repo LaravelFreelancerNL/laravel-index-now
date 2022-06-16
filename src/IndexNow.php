@@ -31,7 +31,6 @@ class IndexNow
             throw new KeyFileDirectoryMissing();
         }
 
-
         File::put(public_path() . "/" . $filename, $key);
 
         return $key;

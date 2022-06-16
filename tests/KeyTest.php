@@ -58,3 +58,9 @@ it('can not generate a key file in non-existing directory', function () {
 it('has a key generation command', function () {
     $this->artisan('index-now:generate-key')->assertExitCode(0);
 });
+
+it('outputs the new key', function () {
+
+    $this->artisan('index-now:generate-key')
+        ->expectsOutput('The keyfile was generated. Please add the following key to your .env file:');
+});

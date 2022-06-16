@@ -15,7 +15,11 @@ class GenerateKeyCommand extends Command
 
     public function handle(): int
     {
-        IndexNow::generateKey();
+        $key = IndexNow::generateKey();
+
+        $this->info('The keyfile was generated. Please add the following key to your .env file:');
+        $this->newLine();
+        $this->info('INDEXNOW_KEY=' . $key);
 
         return self::SUCCESS;
     }
