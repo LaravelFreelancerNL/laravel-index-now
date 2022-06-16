@@ -7,9 +7,9 @@ use Illuminate\Http\Client\Request;
 use Illuminate\Support\Facades\Bus;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Str;
-use LaravelFreelancerNL\LaravelIndexNow\Exceptions\TooManyUrlsException;
-use LaravelFreelancerNL\LaravelIndexNow\Facades\IndexNow;
-use LaravelFreelancerNL\LaravelIndexNow\Jobs\SubmitUrlJob;
+use  LaravelFreelancerNL\LaravelIndexNow\Exceptions\TooManyUrlsException;
+use  LaravelFreelancerNL\LaravelIndexNow\Facades\IndexNow;
+use  LaravelFreelancerNL\LaravelIndexNow\Jobs\IndexNowSubmitJob;
 
 beforeEach(function () {
     config(['index-now.key' => Str::uuid()->toString()]);
@@ -103,7 +103,7 @@ it('delays a submit', function () {
     $response = IndexNow::delaySubmission('https://devechtschool.nl');
 
     expect($response)->toBeInstanceOf(PendingDispatch::class);
-    Bus::assertNotDispatchedSync(SubmitUrlJob::class);
+    Bus::assertNotDispatchedSync(IndexNowSubmitJob::class);
 });
 
 it('delays a submit for 0 seconds...', function () {
@@ -112,5 +112,5 @@ it('delays a submit for 0 seconds...', function () {
 
     IndexNow::delaySubmission('https://devechtschool.nl', 0);
 
-    Bus::assertDispatched(SubmitUrlJob::class);
+    Bus::assertDispatched(IndexNowSubmitJob::class);
 });

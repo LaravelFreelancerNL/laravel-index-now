@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace LaravelFreelancerNL\LaravelIndexNow;
 
 use LaravelFreelancerNL\LaravelIndexNow\Commands\GenerateKeyCommand;
+use Spatie\LaravelPackageTools\Exceptions\InvalidPackage;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
 
@@ -27,7 +28,7 @@ class IndexNowServiceProvider extends PackageServiceProvider
      * Register any application services.
      *
      * @return void
-     * @throws \Spatie\LaravelPackageTools\Exceptions\InvalidPackage
+     * @throws InvalidPackage
      */
     public function register()
     {

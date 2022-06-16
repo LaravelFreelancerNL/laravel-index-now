@@ -9,7 +9,7 @@ use Illuminate\Http\Client\Response;
 use Illuminate\Support\Facades\Facade;
 
 /**
- * @see \LaravelFreelancerNL\LaravelIndexNow\LaravelIndexNow
+ * @see \LaravelFreelancerNL\LaravelIndexNow\IndexNow
  *
  * @method string generateKey()
  * @method string getKeyFileName()

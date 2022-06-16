@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace LaravelFreelancerNL\LaravelIndexNow;
+namespace  LaravelFreelancerNL\LaravelIndexNow;
 
 use Exception;
 use Illuminate\Foundation\Bus\PendingDispatch;
@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Str;
 use LaravelFreelancerNL\LaravelIndexNow\Exceptions\KeyFileDirectoryMissing;
 use LaravelFreelancerNL\LaravelIndexNow\Exceptions\TooManyUrlsException;
-use LaravelFreelancerNL\LaravelIndexNow\Jobs\SubmitUrlJob;
+use LaravelFreelancerNL\LaravelIndexNow\Jobs\IndexNowSubmitJob;
 
 class IndexNow
 {
@@ -58,7 +58,7 @@ class IndexNow
     {
         $delayInSeconds ??= (int) config('index-now.delay');
 
-        return SubmitUrlJob::dispatch($url)->delay(now()->addSeconds($delayInSeconds));
+        return IndexNowSubmitJob::dispatch($url)->delay(now()->addSeconds($delayInSeconds));
     }
 
     /**

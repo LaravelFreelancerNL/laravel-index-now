@@ -12,7 +12,7 @@ use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use LaravelFreelancerNL\LaravelIndexNow\Facades\IndexNow;
 
-class SubmitUrlJob implements ShouldBeUnique, ShouldQueue
+class IndexNowSubmitJob implements ShouldBeUnique, ShouldQueue
 {
     use Dispatchable;
     use InteractsWithQueue;

@@ -40,8 +40,7 @@
     },
     "autoload": {
         "psr-4": {
-            "LaravelFreelancerNL\\LaravelIndexNow\\": "src",
-            "LaravelFreelancerNL\\LaravelIndexNow\\Database\\Factories\\": "database/factories"
+            "LaravelFreelancerNL\\LaravelIndexNow\\": "src"
         }
     },
     "autoload-dev": {
@@ -61,10 +60,10 @@
     "extra": {
         "laravel": {
             "providers": [
-                "LaravelFreelancerNL\\LaravelIndexNow\\LaravelIndexNowServiceProvider"
+                "LaravelFreelancerNL\\LaravelIndexNow\\IndexNowServiceProvider"
             ],
             "aliases": {
-                "IndexNow": "LaravelFreelancerNL\\LaravelIndexNow\\Facades\\IndexNow"
+                "IndexNow": "LaravelFreelancerNL\\laravel-index-now\\Facades\\IndexNow"
             }
         }
     },
