@@ -4,12 +4,13 @@ declare(strict_types=1);
 
 use Illuminate\Foundation\Bus\PendingDispatch;
 use Illuminate\Http\Client\Request;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Bus;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Str;
-use  LaravelFreelancerNL\LaravelIndexNow\Exceptions\TooManyUrlsException;
-use  LaravelFreelancerNL\LaravelIndexNow\Facades\IndexNow;
-use  LaravelFreelancerNL\LaravelIndexNow\Jobs\IndexNowSubmitJob;
+use LaravelFreelancerNL\LaravelIndexNow\Exceptions\TooManyUrlsException;
+use LaravelFreelancerNL\LaravelIndexNow\Facades\IndexNow;
+use LaravelFreelancerNL\LaravelIndexNow\Jobs\IndexNowSubmitJob;
 
 beforeEach(function () {
     config(['index-now.key' => Str::uuid()->toString()]);

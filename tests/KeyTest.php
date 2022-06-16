@@ -3,8 +3,8 @@
 declare(strict_types=1);
 
 use Illuminate\Support\Facades\File;
-use  LaravelFreelancerNL\LaravelIndexNow\Exceptions\KeyFileDirectoryMissing;
-use  LaravelFreelancerNL\LaravelIndexNow\Facades\IndexNow;
+use LaravelFreelancerNL\LaravelIndexNow\Exceptions\KeyFileDirectoryMissing;
+use LaravelFreelancerNL\LaravelIndexNow\Facades\IndexNow;
 
 it('generates a key file', function () {
     $key = IndexNow::generateKey();

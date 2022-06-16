@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace  LaravelFreelancerNL\LaravelIndexNow\Tests;
+namespace LaravelFreelancerNL\LaravelIndexNow\Tests;
 
-use  LaravelFreelancerNL\LaravelIndexNow\IndexNowServiceProvider;
+use LaravelFreelancerNL\LaravelIndexNow\IndexNowServiceProvider;
 use Orchestra\Testbench\TestCase as Orchestra;
 
 class TestCase extends Orchestra
