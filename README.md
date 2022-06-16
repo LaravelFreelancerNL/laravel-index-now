@@ -1,9 +1,9 @@
 # Submit pages to search engines
 
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/LaravelFreelancerNL/laravel-index-now.svg?style=flat-square)](https://packagist.org/packages/LaravelFreelancerNL/laravel-index-now)
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/laravel-freelancer-nl/laravel-index-now.svg?style=flat-square)](https://packagist.org/packages/LaravelFreelancerNL/laravel-index-now)
 [![GitHub Tests Action Status](https://img.shields.io/github/workflow/status/LaravelFreelancerNL/laravel-index-now/run-tests?label=tests)](https://github.com/LaravelFreelancerNL/laravel-index-now/actions?query=workflow%3Arun-tests+branch%3Amain)
 [![GitHub Code Style Action Status](https://img.shields.io/github/workflow/status/LaravelFreelancerNL/laravel-index-now/Check%20&%20fix%20styling?label=code%20style)](https://github.com/LaravelFreelancerNL/laravel-index-now/actions?query=workflow%3A"Check+%26+fix+styling"+branch%3Amain)
-[![Total Downloads](https://img.shields.io/packagist/dt/LaravelFreelancerNL/laravel-index-now.svg?style=flat-square)](https://packagist.org/packages/LaravelFreelancerNL/laravel-index-now)
+[![Total Downloads](https://img.shields.io/packagist/dt/laravel-freelancer-nl/laravel-index-now.svg?style=flat-square)](https://packagist.org/packages/LaravelFreelancerNL/laravel-index-now)
 
 [IndexNow](https://www.indexnow.org) is an API created by Microsoft Bing & Yandex to allow you to submit page changes
 to their search engines quickly.  A submission to one search engine will automatically pass the submission on to the 
@@ -17,7 +17,7 @@ and [has announced it will be testing it](https://www.searchenginejournal.com/go
 You can install the package via composer:
 
 ```bash
-composer require LaravelFreelancerNL/laravel-index-now
+composer require laravel-freelancer-nl/laravel-index-now
 ```
 
 You can publish the config file with:
@@ -37,10 +37,14 @@ return [
 ];
 ```
 _Host_: the domain for which you will submit pages to the search engine 
+
 _key_: the unique key for this domain (you will generate one in the next step)
+
 _key-location_: the directory and/or prefix to the key file
+
 _search-engine_: the domain of the specific search engine you wish to submit too. 
-_delay_: the default delay in seconds for delayed page submissions.
+
+_delay_: the delay in seconds for delayed page submissions.
 
 ### Generate a new key
 The IndexNow API matches the request key to a key file within the host domain. 
