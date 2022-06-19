@@ -9,6 +9,7 @@ use Illuminate\Foundation\Bus\PendingDispatch;
 use Illuminate\Http\Client\Response;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 use LaravelFreelancerNL\LaravelIndexNow\Exceptions\KeyFileDirectoryMissing;
 use LaravelFreelancerNL\LaravelIndexNow\Exceptions\TooManyUrlsException;
@@ -40,8 +41,14 @@ class IndexNow
      * @param string|string[] $url
      * @throws Exception
      */
-    public function submit(string|array $url): Response
+    public function submit(string|array $url): Response|false
     {
+        if (config('app.env') !== config('index-now.production-env')) {
+            $this->logFailedAttempt($url);
+
+            return false;
+        }
+
         if (is_string($url)) {
             return $this->submitUrl($url);
         }
@@ -58,6 +65,23 @@ class IndexNow
         $delayInSeconds ??= (int) config('index-now.delay');
 
         return IndexNowSubmitJob::dispatch($url)->delay(now()->addSeconds($delayInSeconds));
+    }
+
+    /**
+     * @param string|string[] $url
+     */
+    protected function logFailedAttempt(string|array $url): void
+    {
+        if (config('index-now.log-failed-submits') === false) {
+            return;
+        }
+
+        Log::info(
+            'IndexNow: page submissions are only sent in production environments.',
+            ['url' => $url]
+        );
+
+
     }
 
     /**

@@ -9,6 +9,7 @@ use LaravelFreelancerNL\LaravelIndexNow\Jobs\IndexNowSubmitJob;
 
 beforeEach(function () {
     config(['index-now.key' => Str::uuid()->toString()]);
+    config(['app.env' => 'production']);
 });
 
 it('handles the job', function () {

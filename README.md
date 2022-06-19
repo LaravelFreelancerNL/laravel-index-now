@@ -5,6 +5,9 @@
 [![GitHub Code Style Action Status](https://img.shields.io/github/workflow/status/LaravelFreelancerNL/laravel-index-now/Check%20&%20fix%20styling?label=code%20style)](https://github.com/LaravelFreelancerNL/laravel-index-now/actions?query=workflow%3A"Check+%26+fix+styling"+branch%3Amain)
 [![Total Downloads](https://img.shields.io/packagist/dt/laravel-freelancer-nl/laravel-index-now.svg?style=flat-square)](https://packagist.org/packages/laravel-freelancer-nl/laravel-index-now)
 
+This packages provides a wrapper to use the IndexNow api in Laravel. This makes indexing new webpages in (some) search 
+engines easy and fast. It makes for a nice little addition to sitemaps.
+
 [IndexNow](https://www.indexnow.org) is an API created by Microsoft Bing & Yandex to allow you to submit page changes
 to their search engines quickly.  A submission to one search engine will automatically pass the submission on to the 
 others.
@@ -32,19 +35,19 @@ return [
     'host' => env('APP_URL', 'localhost'),
     'key' => env('INDEXNOW_KEY', ''),
     'key-location' => env('INDEXNOW_KEY_LOCATION', ''),
+    'log-failed-submits' => env('INDEXNOW_LOG_FAILED_SUBMITS', true),
+    'production-env' => env('INDEXNOW_PRODUCTION_ENV', 'production'),
     'search-engine' => env('INDEXNOW_SEARCH_ENGINE', 'api.indexnow.org'),
     'delay' => env('INDEXNOW_SUBMIT_DELAY', 600),
 ];
 ```
-_Host_: the domain for which you will submit pages to the search engine 
-
-_key_: the unique key for this domain (you will generate one in the next step)
-
-_key-location_: the directory and/or prefix to the key file
-
-_search-engine_: the domain of the specific search engine you wish to submit too. 
-
-_delay_: the delay in seconds for delayed page submissions.
+- _host_: the domain for which you will submit pages to the search engine 
+- _key_: the unique key for this domain (you will generate one in the next step)
+- _key-location_: the directory and/or prefix to the key file
+- _log-failed-submits_: disable logging of submit attempts in non-production environments
+- _production-env_: the name of the production environment; 
+- _search-engine_: the domain of the specific search engine you wish to submit too. 
+- _delay_: the delay in seconds for delayed page submissions.
 
 ### Generate a new key
 The IndexNow API matches the request key to a key file within the host domain. 
@@ -59,6 +62,20 @@ Copy the displayed key and place it in your .env file.
 If you've set a key location in the config it will be prefixed to the file.
 
 Running this command multiple times will generate a new key and key file.
+
+### Only submit pages for your production environment
+You probably don't want to submit pages in any environment other than production. 
+
+By default, this package assumes that your production environment is called 'production' and will only submit when it 
+matches the configured name in the package.
+
+In the case of an environment mismatch it will log a submission 'attempt' instead of actually submitting the page to 
+the search engines.
+
+If you use an alternative name for your production environment you can set INDEXNOW_PRODUCTION_ENV in your .env 
+to match. 
+
+You can disable this by setting INDEXNOW_PRODUCTION_ENV to false.
 
 ## Usage
 You can submit one or more pages per request by calling the facade and passing the url(s) to the submit method.
