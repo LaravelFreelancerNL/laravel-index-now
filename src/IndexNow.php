@@ -80,8 +80,6 @@ class IndexNow
             'IndexNow: page submissions are only sent in production environments.',
             ['url' => $url]
         );
-
-
     }
 
     /**

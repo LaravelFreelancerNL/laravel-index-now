@@ -130,7 +130,8 @@ it('does not submit in a non-production environment', function () {
 
     expect($response)->toBeFalse();
 
-    Log::assertLogged(fn (LogEntry $log) =>
+    Log::assertLogged(
+        fn (LogEntry $log) =>
         $log->level === 'info'
         && $log->message === 'IndexNow: page submissions are only sent in production environments.'
         && $log->context === ['url' => 'https://dejacht.nl']
@@ -151,7 +152,8 @@ it('does not log failed submits with logging disabled', function () {
 
     expect($response)->toBeFalse();
 
-    Log::assertNotLogged(fn (LogEntry $log) =>
+    Log::assertNotLogged(
+        fn (LogEntry $log) =>
         $log->level === 'info'
         && $log->message === 'IndexNow: page submissions are only sent in production environments.'
         && $log->context === ['url' => 'https://dejacht.nl']
