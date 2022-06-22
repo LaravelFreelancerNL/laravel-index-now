@@ -25,7 +25,7 @@ composer require laravel-freelancer-nl/laravel-index-now
 
 You can publish the config file with:
 ```bash
-php artisan vendor:publish --tag="laravel-index-now-config"
+php artisan vendor:publish --tag="index-now-config"
 ```
 
 This is the contents of the published config file:
