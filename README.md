@@ -1,4 +1,5 @@
-# Submit pages to search engines
+# Laravel IndexNow
+Submit pages to search engines
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/laravel-freelancer-nl/laravel-index-now.svg?style=flat-square)](https://packagist.org/packages/laravel-freelancer-nl/laravel-index-now)
 [![GitHub Tests Action Status](https://img.shields.io/github/workflow/status/LaravelFreelancerNL/laravel-index-now/run-tests?label=tests)](https://github.com/LaravelFreelancerNL/laravel-index-now/actions?query=workflow%3Arun-tests+branch%3Amain)
