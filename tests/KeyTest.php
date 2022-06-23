@@ -9,7 +9,7 @@ use LaravelFreelancerNL\LaravelIndexNow\Facades\IndexNow;
 it('generates a key file', function () {
     $key = IndexNow::generateKey();
 
-    $path = public_path($key . '.txt');
+    $path = public_path($key.'.txt');
     $contents = File::get($path);
 
     expect($contents)->toBe($key);
@@ -21,7 +21,7 @@ it('generates a key file at a specific location', function () {
 
     $key = IndexNow::generateKey();
 
-    $path = public_path($keyLocation . $key . '.txt');
+    $path = public_path($keyLocation.$key.'.txt');
 
     $contents = File::get($path);
 
@@ -39,7 +39,7 @@ it('generates a key file in a subdirectory', function () {
 
     $key = IndexNow::generateKey();
 
-    $path = public_path($keyLocation . $key . '.txt');
+    $path = public_path($keyLocation.$key.'.txt');
 
     $contents = File::get($path);
 
@@ -53,7 +53,6 @@ it('can not generate a key file in non-existing directory', function () {
 
     IndexNow::generateKey();
 })->throws(KeyFileDirectoryMissing::class);
-
 
 it('has a key generation command', function () {
     $this->artisan('index-now:generate-key')->assertExitCode(0);

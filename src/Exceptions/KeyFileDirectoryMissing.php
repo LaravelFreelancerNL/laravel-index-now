@@ -12,5 +12,5 @@ class KeyFileDirectoryMissing extends Exception
     protected $code = 404;
 
     /** @phpstan-ignore-next-line  */
-    protected $message = "The key location directory does not exist.";
+    protected $message = 'The key location directory does not exist.';
 }
