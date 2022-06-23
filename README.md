@@ -1,9 +1,11 @@
 # Submit pages to search engines
 
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/laravel-freelancer-nl/laravel-index-now.svg?style=flat-square)](https://packagist.org/packages/laravel-freelancer-nl/laravel-index-now)
-[![GitHub Tests Action Status](https://img.shields.io/github/workflow/status/LaravelFreelancerNL/laravel-index-now/run-tests?label=tests)](https://github.com/LaravelFreelancerNL/laravel-index-now/actions?query=workflow%3Arun-tests+branch%3Amain)
-[![GitHub Code Style Action Status](https://img.shields.io/github/workflow/status/LaravelFreelancerNL/laravel-index-now/Check%20&%20fix%20styling?label=code%20style)](https://github.com/LaravelFreelancerNL/laravel-index-now/actions?query=workflow%3A"Check+%26+fix+styling"+branch%3Amain)
-[![Total Downloads](https://img.shields.io/packagist/dt/laravel-freelancer-nl/laravel-index-now.svg?style=flat-square)](https://packagist.org/packages/laravel-freelancer-nl/laravel-index-now)
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/laravel-freelancer-nl/laravel-index-now.svg?style=flat)](https://packagist.org/packages/laravel-freelancer-nl/laravel-index-now)
+[![License](https://img.shields.io/github/license/LaravelFreelancerNL/laravel-index-now)](https://github.com/LaravelFreelancerNL/laravel-index-now/blob/next/LICENSE.md)
+[![Total Downloads](https://img.shields.io/packagist/dt/laravel-freelancer-nl/laravel-index-now.svg?style=flat)](https://packagist.org/packages/laravel-freelancer-nl/laravel-index-now)
+[![Code Quality](https://img.shields.io/github/workflow/status/LaravelFreelancerNL/laravel-index-now/quality-assurance?label=quality%20assurance)](https://github.com/LaravelFreelancerNL/laravel-index-now/actions?query=workflow%3Aquality-assurance+branch%3Anext)
+[![Tests](https://img.shields.io/github/workflow/status/LaravelFreelancerNL/laravel-index-now/run-tests?label=tests)](https://github.com/LaravelFreelancerNL/laravel-index-now/actions?query=workflow%3Arun-tests+branch%3Anext)
+[![Code Coverage](https://img.shields.io/scrutinizer/coverage/g/LaravelFreelancerNL/laravel-index-now/next)](https://scrutinizer-ci.com/g/LaravelFreelancerNL/laravel-index-now/?branch=next)
 
 This packages provides a wrapper to use the IndexNow api in Laravel. This makes indexing new webpages in (some) search 
 engines easy and fast. It makes for a nice little addition to sitemaps.
