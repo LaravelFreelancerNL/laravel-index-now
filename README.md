@@ -1,4 +1,4 @@
-# Submit pages to search engines
+# Laravel IndexNow - Submit webpage updates to search engines
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/laravel-freelancer-nl/laravel-index-now.svg?style=flat)](https://packagist.org/packages/laravel-freelancer-nl/laravel-index-now)
 [![License](https://img.shields.io/github/license/LaravelFreelancerNL/laravel-index-now)](https://github.com/LaravelFreelancerNL/laravel-index-now/blob/next/LICENSE.md)
@@ -27,7 +27,7 @@ composer require laravel-freelancer-nl/laravel-index-now
 
 You can publish the config file with:
 ```bash
-php artisan vendor:publish --tag="laravel-index-now-config"
+php artisan vendor:publish --tag="index-now-config"
 ```
 
 This is the contents of the published config file:
