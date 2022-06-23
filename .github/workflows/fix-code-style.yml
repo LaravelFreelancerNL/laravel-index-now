@@ -13,10 +13,6 @@ jobs:
         with:
           ref: ${{ github.head_ref }}
 
-<<<<<<< HEAD
-=======
-    steps:
->>>>>>> origin/next
       - name: Checkout
         uses: actions/checkout@v2
 
