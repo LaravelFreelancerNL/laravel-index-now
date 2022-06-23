@@ -2,9 +2,10 @@
 .php_cs
 .php_cs.cache
 .phpunit.result.cache
+phpstan.neon
 build
-composer.lock
 coverage
+clover.xml
 docs
 testbench.yaml
 vendor

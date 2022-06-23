@@ -21,6 +21,7 @@
         "guzzlehttp/guzzle": "^7.4",
         "illuminate/contracts": "^9.0",
         "nunomaduro/termwind": "^1.10",
+        "phpmd/phpmd": "^2.12",
         "spatie/laravel-package-tools": "^1.9.2"
     },
     "require-dev": {
@@ -35,6 +36,8 @@
         "phpstan/phpstan-deprecation-rules": "^1.0",
         "phpstan/phpstan-phpunit": "^1.0",
         "phpunit/phpunit": "^9.5",
+        "scrutinizer/ocular": "^1.9",
+        "sebastian/phpcpd": "^6.0",
         "spatie/laravel-ray": "^1.26",
         "spatie/pest-plugin-test-time": "^1.1",
         "timacdonald/log-fake": "^2.0"

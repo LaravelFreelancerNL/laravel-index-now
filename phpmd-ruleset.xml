@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ruleset name="Default"
+         xmlns="http://pmd.sf.net/ruleset/1.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://pmd.sf.net/ruleset/1.0.0 http://pmd.sf.net/ruleset_xml_schema.xsd"
+         xsi:noNamespaceSchemaLocation="http://pmd.sf.net/ruleset_xml_schema.xsd">
+    <description>
+        Inspired by https://github.com/phpmd/phpmd/issues/137
+        using http://phpmd.org/documentation/creating-a-ruleset.html
+    </description>
+    <rule ref="rulesets/cleancode.xml">
+        <exclude name="StaticAccess"/>
+    </rule>
+    <rule ref="rulesets/codesize.xml"/>
+    <rule ref="rulesets/controversial.xml"/>
+    <rule ref="rulesets/design.xml"/>
+    <rule ref="rulesets/naming.xml">
+        <exclude name="ShortVariable"/>
+        <exclude name="LongVariable"/>
+        <exclude name="ShortMethodName"/>
+    </rule>
+    <rule name="LongVariable"
+          since="0.2"
+          message="Avoid excessively long variable names like {0}. Keep variable name length under {1}."
+          class="PHPMD\Rule\Naming\LongVariable"
+          externalInfoUrl="https://phpmd.org/rules/naming.html#longvariable">
+        <description>
+            Detects when a field, formal or local variable is declared with a long name.
+        </description>
+        <priority>3</priority>
+        <properties>
+            <property name="maximum" description="The variable length reporting threshold" value="30"/>
+            <property name="subtract-suffixes" description="Comma-separated list of suffixes that will not count in the length of the variable name. Only the first matching suffix will be subtracted." value=""/>
+        </properties>
+        <example>
+            <![CDATA[
+class Something {
+    protected $reallyLongIntName = -3; // VIOLATION - Field
+    public static function main( array $interestingArgumentsList[] ) { // VIOLATION - Formal
+        $otherReallyLongName = -5; // VIOLATION - Local
+        for ($interestingIntIndex = 0; // VIOLATION - For
+             $interestingIntIndex < 10;
+             $interestingIntIndex++ ) {
+        }
+    }
+}
+]]>
+        </example>
+    </rule>
+    <rule ref="rulesets/unusedcode.xml"/>
+</ruleset>

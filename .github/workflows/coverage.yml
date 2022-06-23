@@ -1,0 +1,31 @@
+name: Test Coverage
+
+on: [workflow_dispatch, push, pull_request]
+jobs:
+  run:
+    runs-on: ubuntu-latest
+
+    name:  Test coverage
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: 8.0
+          extensions: mbstring, intl
+          ini-values: post_max_size=256M, short_open_tag=On
+          coverage: xdebug
+
+      - name: Install dependencies
+        run: composer install --prefer-dist --no-progress
+
+      - name: Test coverage
+        run: |
+          composer test-coverage
+          echo "Upload results to Scrutinizer-ci"
+          vendor/bin/ocular code-coverage:upload --format=php-clover build/clover.xml

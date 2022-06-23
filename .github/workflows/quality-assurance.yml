@@ -1,0 +1,37 @@
+name: Quality Assurance
+
+on: [workflow_dispatch, push, pull_request]
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    name:  Code Quality Assurance
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Cache dependencies
+        uses: actions/cache@v1
+        with:
+          path: ~/.composer/cache/files
+          key: dependencies-composer-${{ hashFiles('composer.json') }}
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: 8.0
+          extensions: mbstring, intl
+          ini-values: post_max_size=256M, short_open_tag=On
+          coverage: none
+          tools: composer:v2
+
+      - name: Install dependencies
+        run: |
+          composer update --prefer-dist --no-interaction
+
+      - name: Run all QA checks
+        if: ${{ always() }}
+        run: |
+          chmod +x "${GITHUB_WORKSPACE}/bin/qa.sh"
+          "${GITHUB_WORKSPACE}/bin/qa.sh"

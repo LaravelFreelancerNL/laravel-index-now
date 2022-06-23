@@ -120,6 +120,8 @@ class IndexNow
      */
     protected function getQueryData(): array
     {
+        $queryParameters = [];
+
         $keyLocation = config('index-now.key-location');
 
         $queryParameters['key'] = config('index-now.key');
@@ -132,6 +134,7 @@ class IndexNow
 
     /**
      * @param string[] $urls
+     * @return string[]
      * @throws TooManyUrlsException
      */
     protected function prepareUrls(array $urls): array
