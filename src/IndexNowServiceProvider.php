@@ -28,6 +28,7 @@ class IndexNowServiceProvider extends PackageServiceProvider
      * Register any application services.
      *
      * @return void
+     *
      * @throws InvalidPackage
      */
     public function register()

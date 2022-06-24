@@ -38,7 +38,8 @@ class IndexNow
     }
 
     /**
-     * @param string|string[] $url
+     * @param  string|string[]  $url
+     *
      * @throws Exception
      */
     public function submit(string|array $url): Response|false
@@ -57,7 +58,8 @@ class IndexNow
     }
 
     /**
-     * @param string|string[] $url
+     * @param  string|string[]  $url
+     *
      * @throws Exception
      */
     public function delaySubmission(string|array $url, int $delayInSeconds = null): PendingDispatch
@@ -68,7 +70,7 @@ class IndexNow
     }
 
     /**
-     * @param string|string[] $url
+     * @param  string|string[]  $url
      */
     protected function logFailedAttempt(string|array $url): void
     {
@@ -95,7 +97,8 @@ class IndexNow
     }
 
     /**
-     * @param string[] $urls
+     * @param  string[]  $urls
+     *
      * @throws TooManyUrlsException
      */
     protected function submitUrls(array $urls): Response
@@ -133,8 +136,9 @@ class IndexNow
     }
 
     /**
-     * @param string[] $urls
+     * @param  string[]  $urls
      * @return string[]
+     *
      * @throws TooManyUrlsException
      */
     protected function prepareUrls(array $urls): array
