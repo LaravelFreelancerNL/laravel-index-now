@@ -4,6 +4,7 @@
 .phpunit.result.cache
 phpstan.neon
 build
+composer.lock
 coverage
 clover.xml
 docs

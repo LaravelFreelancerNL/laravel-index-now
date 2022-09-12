@@ -7,4 +7,7 @@ parameters:
         - src
         - config
     tmpDir: build/phpstan
+    excludePaths:
+        - src/Commands/GenerateKeyCommand.php    # excluded because the facade triggers an internal phpstan error
+        - src/Jobs/IndexNowSubmitJob.php         # excluded because the facade triggers an internal phpstan error
 
