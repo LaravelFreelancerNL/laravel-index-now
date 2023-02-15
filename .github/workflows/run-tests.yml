@@ -15,8 +15,10 @@ jobs:
         include:
           - laravel: 9.*
             testbench: 7.*
+            illuminate-contracts: 9.*
           - laravel: 10.*
             testbench: 8.*
+            illuminate-contracts: 10.*
 
     name: P${{ matrix.php }} - L${{ matrix.laravel }} - ${{ matrix.stability }} - ${{ matrix.os }}
 
@@ -38,7 +40,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          composer require "laravel/framework:${{ matrix.laravel }}" "orchestra/testbench:${{ matrix.testbench }}" --no-interaction --no-update --dev
+          composer require "laravel/framework:${{ matrix.laravel }}" "orchestra/testbench:${{ matrix.testbench }}" "illuminate/contracts:${{ matrix.illuminate-contracts }}"  --no-interaction --no-update --dev
           composer update --${{ matrix.stability }} --prefer-dist --no-interaction
 
       - name: Execute tests
