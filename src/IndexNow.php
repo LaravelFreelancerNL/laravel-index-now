@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace  LaravelFreelancerNL\LaravelIndexNow;
+namespace LaravelFreelancerNL\LaravelIndexNow;
 
 use Exception;
 use Illuminate\Foundation\Bus\PendingDispatch;
