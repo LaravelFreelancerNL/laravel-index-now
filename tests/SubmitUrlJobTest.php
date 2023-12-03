@@ -19,7 +19,7 @@ it('handles the job', function () {
 
     Http::assertSent(function (Request $request) {
         return $request->url() == 'https://api.indexnow.org/indexnow?key='
-            .config('index-now.key')
-            .'&url='.urlencode('https://laravel-freelancer.nl');
+            . config('index-now.key')
+            . '&url=' . urlencode('https://laravel-freelancer.nl');
     });
 });
