@@ -16,9 +16,12 @@ jobs:
           - laravel: 9.*
             testbench: 7.*
             illuminate-contracts: 9.*
+            phpunit: 9.*
+            pestphp: 1.*
           - laravel: 10.*
             testbench: 8.*
             illuminate-contracts: 10.*
+            pestphp: 2.*
 
     name: P${{ matrix.php }} - L${{ matrix.laravel }} - ${{ matrix.stability }}
 
@@ -40,6 +43,7 @@ jobs:
 
       - name: Install dependencies
         run: |
+          composer require pestphp/pest:${{ matrix.pestphp }} --dev --with-all-dependencies
           composer require "laravel/framework:${{ matrix.laravel }}" "orchestra/testbench:${{ matrix.testbench }}" "illuminate/contracts:${{ matrix.illuminate-contracts }}"  --no-interaction --no-update --dev
           composer update --${{ matrix.stability }} --prefer-dist --no-interaction
 
