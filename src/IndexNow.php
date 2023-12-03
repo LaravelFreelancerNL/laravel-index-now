@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace  LaravelFreelancerNL\LaravelIndexNow;
+namespace LaravelFreelancerNL\LaravelIndexNow;
 
 use Exception;
 use Illuminate\Foundation\Bus\PendingDispatch;
@@ -26,13 +26,13 @@ class IndexNow
 
         $key = Str::uuid()->toString();
 
-        $filename = $prefix.$key.'.txt';
+        $filename = $prefix . $key . '.txt';
 
-        if (! file_exists(public_path(dirname($filename)))) {
+        if (!file_exists(public_path(dirname($filename)))) {
             throw new KeyFileDirectoryMissing();
         }
 
-        File::put(public_path().'/'.$filename, $key);
+        File::put(public_path() . '/' . $filename, $key);
 
         return $key;
     }
@@ -115,7 +115,7 @@ class IndexNow
     {
         $searchEngineDomain = config('index-now.search-engine');
 
-        return 'https://'.$searchEngineDomain.'/indexnow';
+        return 'https://' . $searchEngineDomain . '/indexnow';
     }
 
     /**

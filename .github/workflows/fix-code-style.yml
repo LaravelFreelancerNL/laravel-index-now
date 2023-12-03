@@ -9,12 +9,9 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           ref: ${{ github.head_ref }}
-
-      - name: Checkout
-        uses: actions/checkout@v3
 
       - name: Cache dependencies
         uses: actions/cache@v3
@@ -25,7 +22,7 @@ jobs:
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: 8.1
+          php-version: 8.3
           extensions: mbstring, intl
           ini-values: post_max_size=256M, short_open_tag=On
           coverage: none
@@ -41,6 +38,6 @@ jobs:
           "${GITHUB_WORKSPACE}/vendor/bin/pint"
 
       - name: Commit changes
-        uses: stefanzweifel/git-auto-commit-action@v4
+        uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: Fix styling

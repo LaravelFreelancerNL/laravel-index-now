@@ -9,7 +9,7 @@ use LaravelFreelancerNL\LaravelIndexNow\Facades\IndexNow;
 it('generates a key file', function () {
     $key = IndexNow::generateKey();
 
-    $path = public_path($key.'.txt');
+    $path = public_path($key . '.txt');
     $contents = File::get($path);
 
     expect($contents)->toBe($key);
@@ -21,7 +21,7 @@ it('generates a key file at a specific location', function () {
 
     $key = IndexNow::generateKey();
 
-    $path = public_path($keyLocation.$key.'.txt');
+    $path = public_path($keyLocation . $key . '.txt');
 
     $contents = File::get($path);
 
@@ -31,7 +31,7 @@ it('generates a key file at a specific location', function () {
 it('generates a key file in a subdirectory', function () {
     $keyLocation = 'articles/';
 
-    if (! file_exists(public_path($keyLocation))) {
+    if (!file_exists(public_path($keyLocation))) {
         mkdir(public_path($keyLocation));
     }
 
@@ -39,7 +39,7 @@ it('generates a key file in a subdirectory', function () {
 
     $key = IndexNow::generateKey();
 
-    $path = public_path($keyLocation.$key.'.txt');
+    $path = public_path($keyLocation . $key . '.txt');
 
     $contents = File::get($path);
 

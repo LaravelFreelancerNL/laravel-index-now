@@ -29,8 +29,8 @@ it('submits an url', function () {
 
     Http::assertSent(function (Request $request) {
         return $request->url() == 'https://api.indexnow.org/indexnow?key='
-            .config('index-now.key')
-            .'&url='.urlencode('https://dejacht.nl');
+            . config('index-now.key')
+            . '&url=' . urlencode('https://dejacht.nl');
     });
 });
 
@@ -47,9 +47,9 @@ it('submits an url with key location', function () {
 
     Http::assertSent(function (Request $request) {
         return $request->url() == 'https://api.indexnow.org/indexnow?key='
-            .config('index-now.key')
-            .'&keyLocation='.config('index-now.key-location')
-            .'&url='.urlencode('https://devechtschool.nl');
+            . config('index-now.key')
+            . '&keyLocation=' . config('index-now.key-location')
+            . '&url=' . urlencode('https://devechtschool.nl');
     });
 });
 
@@ -93,7 +93,7 @@ it('can not submit too many urls', function () {
     $urls = [];
 
     for ($i = 0; $i <= 10001; $i++) {
-        $urls[] = $baseUrl.$i;
+        $urls[] = $baseUrl . $i;
     }
 
     IndexNow::submit($urls);
@@ -129,7 +129,7 @@ it('does not submit in a non-production environment', function () {
     expect($response)->toBeFalse();
 
     Log::assertLogged(
-        fn (LogEntry $log) => $log->level === 'info'
+        fn(LogEntry $log) => $log->level === 'info'
         && $log->message === 'IndexNow: page submissions are only sent in production environments.'
         && $log->context === ['url' => 'https://dejacht.nl']
     );
@@ -149,7 +149,7 @@ it('does not log failed submits with logging disabled', function () {
     expect($response)->toBeFalse();
 
     Log::assertNotLogged(
-        fn (LogEntry $log) => $log->level === 'info'
+        fn(LogEntry $log) => $log->level === 'info'
         && $log->message === 'IndexNow: page submissions are only sent in production environments.'
         && $log->context === ['url' => 'https://dejacht.nl']
     );
@@ -169,7 +169,7 @@ it('submits to a non-default production environment name', function () {
 
     Http::assertSent(function (Request $request) {
         return $request->url() == 'https://api.indexnow.org/indexnow?key='
-            .config('index-now.key')
-            .'&url='.urlencode('https://dejacht.nl');
+            . config('index-now.key')
+            . '&url=' . urlencode('https://dejacht.nl');
     });
 });
