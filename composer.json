@@ -19,7 +19,7 @@
     "require": {
         "php": "^8.1",
         "guzzlehttp/guzzle": "^7.4",
-        "illuminate/contracts": "^9.0|^10.0",
+        "illuminate/contracts": "^9.0|^10.0|^11.0",
         "nunomaduro/termwind": "^1.10",
         "spatie/laravel-package-tools": "^1.9.2"
     },
@@ -35,7 +35,7 @@
         "phpstan/phpstan-phpunit": "^1.0",
         "scrutinizer/ocular": "^1.9",
         "spatie/laravel-ray": "^1.26",
-        "timacdonald/log-fake": "^2.0"
+        "timacdonald/log-fake": "^2.2"
     },
     "autoload": {
         "psr-4": {
