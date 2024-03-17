@@ -33,7 +33,6 @@
         "phpstan/phpstan": "^1.8",
         "phpstan/phpstan-deprecation-rules": "^1.0",
         "phpstan/phpstan-phpunit": "^1.0",
-        "scrutinizer/ocular": "^1.9",
         "spatie/laravel-ray": "^1.26",
         "timacdonald/log-fake": "^2.2"
     },

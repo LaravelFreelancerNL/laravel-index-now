@@ -22,7 +22,9 @@ jobs:
           coverage: xdebug
 
       - name: Install dependencies
-        run: composer install --prefer-dist --no-progress
+        run: |
+          composer install --prefer-dist --no-progress
+          composer require --dev scrutinizer/ocular
 
       - name: Test coverage
         run: |
