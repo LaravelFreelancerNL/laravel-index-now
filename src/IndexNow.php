@@ -80,7 +80,7 @@ class IndexNow
 
         Log::info(
             'IndexNow: page submissions are only sent in production environments.',
-            ['url' => $url]
+            ['url' => $url],
         );
     }
 

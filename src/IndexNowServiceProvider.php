@@ -37,7 +37,7 @@ class IndexNowServiceProvider extends PackageServiceProvider
 
         $this->app->bind(
             'index-now',
-            'LaravelFreelancerNL\LaravelIndexNow\IndexNow'
+            'LaravelFreelancerNL\LaravelIndexNow\IndexNow',
         );
     }
 }
