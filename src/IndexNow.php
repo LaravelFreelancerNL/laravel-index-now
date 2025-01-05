@@ -62,7 +62,7 @@ class IndexNow
      *
      * @throws Exception
      */
-    public function delaySubmission(string|array $url, int $delayInSeconds = null): PendingDispatch
+    public function delaySubmission(string|array $url, ?int $delayInSeconds = null): PendingDispatch
     {
         $delayInSeconds ??= (int) config('index-now.delay');
 
