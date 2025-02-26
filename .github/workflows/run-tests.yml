@@ -1,16 +1,19 @@
 name: Run Tests
 
-on: [pull_request, push]
+on:
+  - pull_request
+  - push
 
 jobs:
   test:
     runs-on: ${{ matrix.os }}
+
     strategy:
       fail-fast: true
       matrix:
         os: [ubuntu-latest]
         php: [8.1, 8.2, 8.3, 8.4]
-        laravel: [10.*, 11.*]
+        laravel: ['10.*', '11.*', '12.*']
         stability: [prefer-stable]
         include:
           - laravel: 10.*
@@ -23,6 +26,8 @@ jobs:
             pestphp: 2.*
         exclude:
           - laravel: 11.*
+            php: 8.1
+          - laravel: 12.*
             php: 8.1
 
     name: P${{ matrix.php }} - L${{ matrix.laravel }} - ${{ matrix.stability }}
