@@ -1,8 +1,9 @@
 includes:
     - phpstan-baseline.neon
-
 parameters:
     level: 8
+    ignoreErrors:
+        - identifier: larastan.noEnvCallsOutsideOfConfig
     paths:
         - src
         - config
@@ -10,4 +11,4 @@ parameters:
     excludePaths:
         - src/Commands/GenerateKeyCommand.php    # excluded because the facade triggers an internal phpstan error
         - src/Jobs/IndexNowSubmitJob.php         # excluded because the facade triggers an internal phpstan error
-
+        - src/Facades/IndexNow.php
