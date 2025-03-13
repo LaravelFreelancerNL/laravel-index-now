@@ -24,7 +24,7 @@ jobs:
       - name: Install dependencies
         run: |
           composer install --prefer-dist --no-progress
-          composer require --dev scrutinizer/ocular
+          composer require --dev "uma/ocular:^2.0"
 
       - name: Test coverage
         run: |
