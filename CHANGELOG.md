@@ -2,6 +2,13 @@
 
 All notable changes to `laravel-index-now` will be documented in this file.
 
+## v2.0.0 - 2025-03-13
+
+### Changes
+
+- Dropped Laravel 10 support
+- Added Laravel 11 support
+
 ## v1.3.1 - 2025-01-05
 
 Fixes php 8.4 implicit nullable type deprecation.
