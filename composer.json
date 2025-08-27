@@ -28,7 +28,7 @@
         "larastan/larastan": "^3.1",
         "orchestra/testbench": "^9.0 || ^10.0",
         "phpmd/phpmd": "^2.14",
-        "pestphp/pest": "^3.0 || "^4.0",
+        "pestphp/pest": "^3.0 || ^4.0",
         "phpstan/extension-installer": "^1.1",
         "phpstan/phpstan": "^1.8 || ^2.1",
         "phpstan/phpstan-deprecation-rules": "^1.0 || ^2.0",
