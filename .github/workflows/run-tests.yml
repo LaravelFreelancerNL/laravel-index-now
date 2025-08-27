@@ -18,7 +18,7 @@ jobs:
             pestphp: 3.*
           - laravel: 12.*
             testbench: 10.*
-            pestphp: 3.*
+            pestphp: 4.*
         exclude:
           - laravel: 11.*
             php: 8.1
