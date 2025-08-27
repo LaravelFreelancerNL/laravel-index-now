@@ -2,6 +2,10 @@
 
 All notable changes to `laravel-index-now` will be documented in this file.
 
+## v2.0.1 - 2025-08-27
+
+Moved Pest dep to dev-reqs
+
 ## v2.0.0 - 2025-03-13
 
 ### Changes
