@@ -1,9 +1,9 @@
 # Laravel IndexNow - Submit webpage updates to search engines
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/laravel-freelancer-nl/laravel-index-now.svg?style=flat)](https://packagist.org/packages/laravel-freelancer-nl/laravel-index-now)
-[![Code Quality](https://img.shields.io/github/workflow/status/LaravelFreelancerNL/laravel-index-now/quality-assurance?label=quality%20assurance)](https://github.com/LaravelFreelancerNL/laravel-index-now/actions?query=workflow%3Aquality-assurance+branch%3Anext)
-[![Tests](https://img.shields.io/github/workflow/status/LaravelFreelancerNL/laravel-index-now/run-tests?label=tests)](https://github.com/LaravelFreelancerNL/laravel-index-now/actions?query=workflow%3Arun-tests+branch%3Anext)
-[![Code Coverage](https://img.shields.io/scrutinizer/coverage/g/LaravelFreelancerNL/laravel-index-now/next)](https://scrutinizer-ci.com/g/LaravelFreelancerNL/laravel-index-now/?branch=next)
+[![Code Quality](https://img.shields.io/github/actions/workflow/status/LaravelFreelancerNL/laravel-index-now/quality-assurance.yml?branch=next&label=quality%20assurance)](https://github.com/LaravelFreelancerNL/laravel-index-now/actions/workflows/quality-assurance.yml?query=branch%3Anext)
+[![Tests](https://img.shields.io/github/actions/workflow/status/LaravelFreelancerNL/laravel-index-now/run-tests.yml?branch=next&label=tests)](https://github.com/LaravelFreelancerNL/laravel-index-now/actions/workflows/run-tests.yml?query=branch%3Anext)
+[![Code Coverage](https://img.shields.io/github/actions/workflow/status/LaravelFreelancerNL/laravel-index-now/coverage.yml?branch=next&label=coverage)](https://github.com/LaravelFreelancerNL/laravel-index-now/actions/workflows/coverage.yml?query=branch%3Anext)
 [![License](https://img.shields.io/github/license/LaravelFreelancerNL/laravel-index-now)](https://github.com/LaravelFreelancerNL/laravel-index-now/blob/next/LICENSE.md)
 [![Total Downloads](https://img.shields.io/packagist/dt/laravel-freelancer-nl/laravel-index-now.svg?style=flat)](https://packagist.org/packages/laravel-freelancer-nl/laravel-index-now)
 
