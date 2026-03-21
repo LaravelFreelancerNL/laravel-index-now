@@ -77,12 +77,12 @@ it('submits multiple urls', function () {
     config(['index-now.key-location', 'index-now-']);
 
     Http::assertSent(function (Request $request) use ($preparedUrls) {
-        return $request->method() == 'POST' &&
-            $request->url() == 'https://api.indexnow.org/indexnow' &&
-            $request['host'] == 'localhost' &&
-            $request['key'] == config('index-now.key') &&
-            $request['keyLocation'] == config('index-now.key-location') &&
-            $request['urlList'] == $preparedUrls;
+        return $request->method() == 'POST'
+            && $request->url() == 'https://api.indexnow.org/indexnow'
+            && $request['host'] == 'localhost'
+            && $request['key'] == config('index-now.key')
+            && $request['keyLocation'] == config('index-now.key-location')
+            && $request['urlList'] == $preparedUrls;
     });
 });
 
