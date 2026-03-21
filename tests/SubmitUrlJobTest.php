@@ -17,9 +17,7 @@ it('handles the job', function () {
 
     (new IndexNowSubmitJob('https://laravel-freelancer.nl'))->handle();
 
-    Http::assertSent(function (Request $request) {
-        return $request->url() == 'https://api.indexnow.org/indexnow?key='
-            . config('index-now.key')
-            . '&url=' . urlencode('https://laravel-freelancer.nl');
-    });
+    Http::assertSent(fn(Request $request) => $request->url() == 'https://api.indexnow.org/indexnow?key='
+        . config('index-now.key')
+        . '&url=' . urlencode('https://laravel-freelancer.nl'));
 });

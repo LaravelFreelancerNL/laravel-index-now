@@ -27,11 +27,9 @@ it('submits an url', function () {
 
     expect($response->ok())->toBeTrue();
 
-    Http::assertSent(function (Request $request) {
-        return $request->url() == 'https://api.indexnow.org/indexnow?key='
-            . config('index-now.key')
-            . '&url=' . urlencode('https://dejacht.nl');
-    });
+    Http::assertSent(fn(Request $request) => $request->url() == 'https://api.indexnow.org/indexnow?key='
+        . config('index-now.key')
+        . '&url=' . urlencode('https://dejacht.nl'));
 });
 
 it('submits an url with key location', function () {
@@ -45,12 +43,10 @@ it('submits an url with key location', function () {
 
     expect($response->ok())->toBeTrue();
 
-    Http::assertSent(function (Request $request) {
-        return $request->url() == 'https://api.indexnow.org/indexnow?key='
-            . config('index-now.key')
-            . '&keyLocation=' . config('index-now.key-location')
-            . '&url=' . urlencode('https://devechtschool.nl');
-    });
+    Http::assertSent(fn(Request $request) => $request->url() == 'https://api.indexnow.org/indexnow?key='
+        . config('index-now.key')
+        . '&keyLocation=' . config('index-now.key-location')
+        . '&url=' . urlencode('https://devechtschool.nl'));
 });
 
 it('submits multiple urls', function () {
@@ -65,9 +61,7 @@ it('submits multiple urls', function () {
         'https://dejacht.nl/jachtvideos/',
     ];
 
-    $preparedUrls = Arr::map($urls, function ($value) {
-        return urlencode($value);
-    });
+    $preparedUrls = Arr::map($urls, fn($value) => urlencode((string) $value));
 
     $response = IndexNow::submit($urls);
 
@@ -76,14 +70,12 @@ it('submits multiple urls', function () {
     config(['index-now.key', Str::uuid()]);
     config(['index-now.key-location', 'index-now-']);
 
-    Http::assertSent(function (Request $request) use ($preparedUrls) {
-        return $request->method() == 'POST'
-            && $request->url() == 'https://api.indexnow.org/indexnow'
-            && $request['host'] == 'localhost'
-            && $request['key'] == config('index-now.key')
-            && $request['keyLocation'] == config('index-now.key-location')
-            && $request['urlList'] == $preparedUrls;
-    });
+    Http::assertSent(fn(Request $request) => $request->method() == 'POST'
+        && $request->url() == 'https://api.indexnow.org/indexnow'
+        && $request['host'] == 'localhost'
+        && $request['key'] == config('index-now.key')
+        && $request['keyLocation'] == config('index-now.key-location')
+        && $request['urlList'] == $preparedUrls);
 });
 
 it('can not submit too many urls', function () {
@@ -167,9 +159,7 @@ it('submits to a non-default production environment name', function () {
 
     expect($response->ok())->toBeTrue();
 
-    Http::assertSent(function (Request $request) {
-        return $request->url() == 'https://api.indexnow.org/indexnow?key='
-            . config('index-now.key')
-            . '&url=' . urlencode('https://dejacht.nl');
-    });
+    Http::assertSent(fn(Request $request) => $request->url() == 'https://api.indexnow.org/indexnow?key='
+        . config('index-now.key')
+        . '&url=' . urlencode('https://dejacht.nl'));
 });
