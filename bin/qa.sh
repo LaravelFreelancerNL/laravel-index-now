@@ -6,4 +6,4 @@ printf "\nRun PHPStan\n"
 composer analyse
 
 printf "\nRun Rector\n"
-./vendor/bin/rector process
+./vendor/bin/rector process --dry-run
