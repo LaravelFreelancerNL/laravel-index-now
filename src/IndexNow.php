@@ -145,10 +145,6 @@ class IndexNow
             throw new TooManyUrlsException();
         }
 
-        foreach ($urls as $key => $url) {
-            $urls[$key] = urlencode($url);
-        }
-
         return $urls;
     }
 

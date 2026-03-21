@@ -53,6 +53,7 @@ it('submits multiple urls', function () {
     Http::fake();
 
     config(['app.url' => 'https://dejacht.nl']);
+    config(['index-now.host' => 'dejacht.nl']);
     config(['index-now.key' => 'test-key']);
     config(['index-now.key-location' => 'index-now-']);
 
@@ -63,7 +64,7 @@ it('submits multiple urls', function () {
         'https://dejacht.nl/jachtvideos/',
     ];
 
-    $preparedUrls = Arr::map($urls, fn($value) => urlencode((string) $value));
+    $preparedUrls = Arr::map($urls, fn($value) => (string) $value);
 
     $response = IndexNow::submit($urls);
 
@@ -71,7 +72,7 @@ it('submits multiple urls', function () {
 
     Http::assertSent(fn(Request $request) => $request->method() == 'POST'
         && $request->url() == 'https://api.indexnow.org/indexnow'
-        && $request['host'] == 'localhost'
+        && $request['host'] == 'dejacht.nl'
         && $request['key'] == config('index-now.key')
         && $request['keyLocation'] == 'https://dejacht.nl/index-now-test-key.txt'
         && $request['urlList'] == $preparedUrls);

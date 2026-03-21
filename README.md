@@ -34,7 +34,7 @@ This is the contents of the published config file:
 
 ```php
 return [
-    'host' => env('APP_URL', 'localhost'),
+    'host' => parse_url((string) env('APP_URL', 'http://localhost'), PHP_URL_HOST) ?? 'localhost',
     'key' => env('INDEXNOW_KEY', ''),
     'key-location' => env('INDEXNOW_KEY_LOCATION', ''),
     'log-failed-submits' => env('INDEXNOW_LOG_FAILED_SUBMITS', true),
@@ -43,7 +43,7 @@ return [
     'delay' => env('INDEXNOW_SUBMIT_DELAY', 600),
 ];
 ```
-- _host_: the domain for which you will submit pages to the search engine 
+- _host_: the hostname for which you will submit pages to the search engine, without scheme or path
 - _key_: the unique key for this domain (you will generate one in the next step)
 - _key-location_: the directory and/or prefix to the key file within your public site; the package derives the public
   `keyLocation` URL from `APP_URL`
