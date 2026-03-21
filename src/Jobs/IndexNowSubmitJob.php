@@ -22,9 +22,7 @@ class IndexNowSubmitJob implements ShouldBeUnique, ShouldQueue
     /**
      * @param  string|string[]  $urls
      */
-    public function __construct(protected array|string $urls)
-    {
-    }
+    public function __construct(protected array|string $urls) {}
 
     public function handle(): void
     {
