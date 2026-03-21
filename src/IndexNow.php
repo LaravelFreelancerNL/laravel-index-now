@@ -44,7 +44,9 @@ class IndexNow
      */
     public function submit(string|array $url): Response|false
     {
-        if (config('app.env') !== config('index-now.production-env')) {
+        $productionEnvironment = config('index-now.production-env');
+
+        if ($productionEnvironment !== false && config('app.env') !== $productionEnvironment) {
             $this->logFailedAttempt($url);
 
             return false;

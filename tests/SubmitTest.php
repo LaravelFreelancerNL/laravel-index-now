@@ -163,3 +163,18 @@ it('submits to a non-default production environment name', function () {
         . config('index-now.key')
         . '&url=' . urlencode('https://dejacht.nl'));
 });
+
+it('can disable production environment gating', function () {
+    config(['app.env' => 'local']);
+    config(['index-now.production-env' => false]);
+
+    Http::fake();
+
+    $response = IndexNow::submit('https://dejacht.nl');
+
+    expect($response->ok())->toBeTrue();
+
+    Http::assertSent(fn(Request $request) => $request->url() == 'https://api.indexnow.org/indexnow?key='
+        . config('index-now.key')
+        . '&url=' . urlencode('https://dejacht.nl'));
+});
