@@ -45,7 +45,8 @@ return [
 ```
 - _host_: the domain for which you will submit pages to the search engine 
 - _key_: the unique key for this domain (you will generate one in the next step)
-- _key-location_: the directory and/or prefix to the key file
+- _key-location_: the directory and/or prefix to the key file within your public site; the package derives the public
+  `keyLocation` URL from `APP_URL`
 - _log-failed-submits_: disable logging of submit attempts in non-production environments
 - _production-env_: the name of the production environment; 
 - _search-engine_: the domain of the specific search engine you wish to submit too. 
@@ -61,7 +62,8 @@ php artisan index-now:generate-key
 This will create a keyfile in the public_dir() of your project and output the key.
 Copy the displayed key and place it in your .env file.
 
-If you've set a key location in the config it will be prefixed to the file.
+If you've set a key location in the config it will be prefixed to the file, and the package will derive the public
+`keyLocation` URL from your `APP_URL`.
 
 Running this command multiple times will generate a new key and key file.
 

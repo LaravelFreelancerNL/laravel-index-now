@@ -35,9 +35,9 @@ it('submits an url', function () {
 it('submits an url with key location', function () {
     Http::fake();
 
+    config(['app.url' => 'https://devechtschool.nl']);
+    config(['index-now.key' => 'test-key']);
     config(['index-now.key-location' => 'index-now-']);
-
-    IndexNow::generateKey();
 
     $response = IndexNow::submit('https://devechtschool.nl');
 
@@ -45,13 +45,15 @@ it('submits an url with key location', function () {
 
     Http::assertSent(fn(Request $request) => $request->url() == 'https://api.indexnow.org/indexnow?key='
         . config('index-now.key')
-        . '&keyLocation=' . config('index-now.key-location')
+        . '&keyLocation=' . urlencode('https://devechtschool.nl/index-now-test-key.txt')
         . '&url=' . urlencode('https://devechtschool.nl'));
 });
 
 it('submits multiple urls', function () {
     Http::fake();
 
+    config(['app.url' => 'https://dejacht.nl']);
+    config(['index-now.key' => 'test-key']);
     config(['index-now.key-location' => 'index-now-']);
 
     $urls = [
@@ -67,14 +69,11 @@ it('submits multiple urls', function () {
 
     expect($response->ok())->toBeTrue();
 
-    config(['index-now.key', Str::uuid()]);
-    config(['index-now.key-location', 'index-now-']);
-
     Http::assertSent(fn(Request $request) => $request->method() == 'POST'
         && $request->url() == 'https://api.indexnow.org/indexnow'
         && $request['host'] == 'localhost'
         && $request['key'] == config('index-now.key')
-        && $request['keyLocation'] == config('index-now.key-location')
+        && $request['keyLocation'] == 'https://dejacht.nl/index-now-test-key.txt'
         && $request['urlList'] == $preparedUrls);
 });
 
