@@ -2,6 +2,24 @@
 
 All notable changes to `laravel-index-now` will be documented in this file.
 
+## v2.1.0 - 2026-03-21
+
+### Added
+
+- Added Laravel 13 support.
+
+### Fixed
+
+- Fixed `INDEXNOW_PRODUCTION_ENV=false` so production-only submit gating can be disabled completely.
+- Fixed `keyLocation` handling to send the public key file URL derived from `APP_URL`, with a fallback to `https://<host>` when `APP_URL` is empty.
+- Fixed bulk URL submissions to send the expected `host` value and `urlList` payload.
+- Fixed the registered `IndexNow` facade alias.
+
+### Documentation
+
+- Clarified the difference between `INDEXNOW_PRODUCTION_ENV` and `INDEXNOW_LOG_FAILED_SUBMITS`.
+- Clarified how `INDEXNOW_KEY_LOCATION` maps to the public `keyLocation` URL.
+
 ## v2.0.1 - 2025-08-27
 
 Moved Pest dep to dev-reqs

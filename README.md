@@ -1,9 +1,9 @@
 # Laravel IndexNow - Submit webpage updates to search engines
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/laravel-freelancer-nl/laravel-index-now.svg?style=flat)](https://packagist.org/packages/laravel-freelancer-nl/laravel-index-now)
-[![Code Quality](https://img.shields.io/github/workflow/status/LaravelFreelancerNL/laravel-index-now/quality-assurance?label=quality%20assurance)](https://github.com/LaravelFreelancerNL/laravel-index-now/actions?query=workflow%3Aquality-assurance+branch%3Anext)
-[![Tests](https://img.shields.io/github/workflow/status/LaravelFreelancerNL/laravel-index-now/run-tests?label=tests)](https://github.com/LaravelFreelancerNL/laravel-index-now/actions?query=workflow%3Arun-tests+branch%3Anext)
-[![Code Coverage](https://img.shields.io/scrutinizer/coverage/g/LaravelFreelancerNL/laravel-index-now/next)](https://scrutinizer-ci.com/g/LaravelFreelancerNL/laravel-index-now/?branch=next)
+[![Code Quality](https://img.shields.io/github/actions/workflow/status/LaravelFreelancerNL/laravel-index-now/quality-assurance.yml?branch=next&label=quality%20assurance)](https://github.com/LaravelFreelancerNL/laravel-index-now/actions/workflows/quality-assurance.yml?query=branch%3Anext)
+[![Tests](https://img.shields.io/github/actions/workflow/status/LaravelFreelancerNL/laravel-index-now/run-tests.yml?branch=next&label=tests)](https://github.com/LaravelFreelancerNL/laravel-index-now/actions/workflows/run-tests.yml?query=branch%3Anext)
+[![Code Coverage](https://img.shields.io/github/actions/workflow/status/LaravelFreelancerNL/laravel-index-now/coverage.yml?branch=next&label=coverage)](https://github.com/LaravelFreelancerNL/laravel-index-now/actions/workflows/coverage.yml?query=branch%3Anext)
 [![License](https://img.shields.io/github/license/LaravelFreelancerNL/laravel-index-now)](https://github.com/LaravelFreelancerNL/laravel-index-now/blob/next/LICENSE.md)
 [![Total Downloads](https://img.shields.io/packagist/dt/laravel-freelancer-nl/laravel-index-now.svg?style=flat)](https://packagist.org/packages/laravel-freelancer-nl/laravel-index-now)
 
@@ -34,7 +34,7 @@ This is the contents of the published config file:
 
 ```php
 return [
-    'host' => env('APP_URL', 'localhost'),
+    'host' => parse_url((string) env('APP_URL', 'http://localhost'), PHP_URL_HOST) ?? 'localhost',
     'key' => env('INDEXNOW_KEY', ''),
     'key-location' => env('INDEXNOW_KEY_LOCATION', ''),
     'log-failed-submits' => env('INDEXNOW_LOG_FAILED_SUBMITS', true),
@@ -43,10 +43,12 @@ return [
     'delay' => env('INDEXNOW_SUBMIT_DELAY', 600),
 ];
 ```
-- _host_: the domain for which you will submit pages to the search engine 
+- _host_: the hostname for which you will submit pages to the search engine, without scheme or path
 - _key_: the unique key for this domain (you will generate one in the next step)
-- _key-location_: the directory and/or prefix to the key file
-- _log-failed-submits_: disable logging of submit attempts in non-production environments
+- _key-location_: the directory and/or prefix to the key file within your public site; the package derives the public
+  `keyLocation` URL from `APP_URL`, or falls back to `https://<host>` when `APP_URL` is empty
+- _log-failed-submits_: whether to log skipped submit attempts when the current environment does not match
+  `_production-env_`
 - _production-env_: the name of the production environment; 
 - _search-engine_: the domain of the specific search engine you wish to submit too. 
 - _delay_: the delay in seconds for delayed page submissions.
@@ -61,7 +63,8 @@ php artisan index-now:generate-key
 This will create a keyfile in the public_dir() of your project and output the key.
 Copy the displayed key and place it in your .env file.
 
-If you've set a key location in the config it will be prefixed to the file.
+If you've set a key location in the config it will be prefixed to the file, and the package will derive the public
+`keyLocation` URL from your `APP_URL`, or fall back to `https://<host>` when `APP_URL` is empty.
 
 Running this command multiple times will generate a new key and key file.
 
@@ -78,6 +81,8 @@ If you use an alternative name for your production environment you can set INDEX
 to match. 
 
 You can disable this by setting INDEXNOW_PRODUCTION_ENV to false.
+
+If you want to keep the environment check but suppress those log entries, set INDEXNOW_LOG_FAILED_SUBMITS to false.
 
 ## Usage
 You can submit one or more pages per request by calling the facade and passing the url(s) to the submit method.

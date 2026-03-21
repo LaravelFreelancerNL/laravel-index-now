@@ -22,11 +22,8 @@ class IndexNow
      */
     public function generateKey(): string
     {
-        $prefix = config('index-now.key-location');
-
         $key = Str::uuid()->toString();
-
-        $filename = $prefix . $key . '.txt';
+        $filename = $this->getKeyFilePath($key);
 
         if (!file_exists(public_path(dirname($filename)))) {
             throw new KeyFileDirectoryMissing();
@@ -44,7 +41,9 @@ class IndexNow
      */
     public function submit(string|array $url): Response|false
     {
-        if (config('app.env') !== config('index-now.production-env')) {
+        $productionEnvironment = config('index-now.production-env');
+
+        if ($productionEnvironment !== false && config('app.env') !== $productionEnvironment) {
             $this->logFailedAttempt($url);
 
             return false;
@@ -125,11 +124,10 @@ class IndexNow
     {
         $queryParameters = [];
 
-        $keyLocation = config('index-now.key-location');
-
         $queryParameters['key'] = config('index-now.key');
-        if (isset($keyLocation) && $keyLocation !== '') {
-            $queryParameters['keyLocation'] = $keyLocation;
+        $keyLocationUrl = $this->getKeyLocationUrl();
+        if ($keyLocationUrl !== null) {
+            $queryParameters['keyLocation'] = $keyLocationUrl;
         }
 
         return $queryParameters;
@@ -147,10 +145,29 @@ class IndexNow
             throw new TooManyUrlsException();
         }
 
-        foreach ($urls as $key => $url) {
-            $urls[$key] = urlencode($url);
+        return $urls;
+    }
+
+    protected function getKeyFilePath(string $key): string
+    {
+        return (string) config('index-now.key-location') . $key . '.txt';
+    }
+
+    protected function getKeyLocationUrl(): ?string
+    {
+        $key = config('index-now.key');
+        $keyLocation = config('index-now.key-location');
+
+        if (!is_string($key) || $key === '' || !is_string($keyLocation) || $keyLocation === '') {
+            return null;
         }
 
-        return $urls;
+        $appUrl = rtrim((string) config('app.url', ''), '/');
+
+        if ($appUrl === '') {
+            $appUrl = 'https://' . config('index-now.host');
+        }
+
+        return $appUrl . '/' . ltrim($this->getKeyFilePath($key), '/');
     }
 }

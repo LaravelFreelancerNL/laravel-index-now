@@ -8,9 +8,8 @@ use Exception;
 
 class TooManyUrlsException extends Exception
 {
-    /** @phpstan-ignore-next-line  */
+    /** @var int */
     protected $code = 413;
 
-    /** @phpstan-ignore-next-line  */
     protected $message = "You can't submit more than 10.000 urls in one batch.";
 }

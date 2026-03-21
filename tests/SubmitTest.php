@@ -27,35 +27,34 @@ it('submits an url', function () {
 
     expect($response->ok())->toBeTrue();
 
-    Http::assertSent(function (Request $request) {
-        return $request->url() == 'https://api.indexnow.org/indexnow?key='
-            . config('index-now.key')
-            . '&url=' . urlencode('https://dejacht.nl');
-    });
+    Http::assertSent(fn(Request $request) => $request->url() == 'https://api.indexnow.org/indexnow?key='
+        . config('index-now.key')
+        . '&url=' . urlencode('https://dejacht.nl'));
 });
 
 it('submits an url with key location', function () {
     Http::fake();
 
+    config(['app.url' => 'https://devechtschool.nl']);
+    config(['index-now.key' => 'test-key']);
     config(['index-now.key-location' => 'index-now-']);
-
-    IndexNow::generateKey();
 
     $response = IndexNow::submit('https://devechtschool.nl');
 
     expect($response->ok())->toBeTrue();
 
-    Http::assertSent(function (Request $request) {
-        return $request->url() == 'https://api.indexnow.org/indexnow?key='
-            . config('index-now.key')
-            . '&keyLocation=' . config('index-now.key-location')
-            . '&url=' . urlencode('https://devechtschool.nl');
-    });
+    Http::assertSent(fn(Request $request) => $request->url() == 'https://api.indexnow.org/indexnow?key='
+        . config('index-now.key')
+        . '&keyLocation=' . urlencode('https://devechtschool.nl/index-now-test-key.txt')
+        . '&url=' . urlencode('https://devechtschool.nl'));
 });
 
 it('submits multiple urls', function () {
     Http::fake();
 
+    config(['app.url' => 'https://dejacht.nl']);
+    config(['index-now.host' => 'dejacht.nl']);
+    config(['index-now.key' => 'test-key']);
     config(['index-now.key-location' => 'index-now-']);
 
     $urls = [
@@ -65,25 +64,18 @@ it('submits multiple urls', function () {
         'https://dejacht.nl/jachtvideos/',
     ];
 
-    $preparedUrls = Arr::map($urls, function ($value) {
-        return urlencode($value);
-    });
+    $preparedUrls = Arr::map($urls, fn($value) => (string) $value);
 
     $response = IndexNow::submit($urls);
 
     expect($response->ok())->toBeTrue();
 
-    config(['index-now.key', Str::uuid()]);
-    config(['index-now.key-location', 'index-now-']);
-
-    Http::assertSent(function (Request $request) use ($preparedUrls) {
-        return $request->method() == 'POST'
-            && $request->url() == 'https://api.indexnow.org/indexnow'
-            && $request['host'] == 'localhost'
-            && $request['key'] == config('index-now.key')
-            && $request['keyLocation'] == config('index-now.key-location')
-            && $request['urlList'] == $preparedUrls;
-    });
+    Http::assertSent(fn(Request $request) => $request->method() == 'POST'
+        && $request->url() == 'https://api.indexnow.org/indexnow'
+        && $request['host'] == 'dejacht.nl'
+        && $request['key'] == config('index-now.key')
+        && $request['keyLocation'] == 'https://dejacht.nl/index-now-test-key.txt'
+        && $request['urlList'] == $preparedUrls);
 });
 
 it('can not submit too many urls', function () {
@@ -167,9 +159,22 @@ it('submits to a non-default production environment name', function () {
 
     expect($response->ok())->toBeTrue();
 
-    Http::assertSent(function (Request $request) {
-        return $request->url() == 'https://api.indexnow.org/indexnow?key='
-            . config('index-now.key')
-            . '&url=' . urlencode('https://dejacht.nl');
-    });
+    Http::assertSent(fn(Request $request) => $request->url() == 'https://api.indexnow.org/indexnow?key='
+        . config('index-now.key')
+        . '&url=' . urlencode('https://dejacht.nl'));
+});
+
+it('can disable production environment gating', function () {
+    config(['app.env' => 'local']);
+    config(['index-now.production-env' => false]);
+
+    Http::fake();
+
+    $response = IndexNow::submit('https://dejacht.nl');
+
+    expect($response->ok())->toBeTrue();
+
+    Http::assertSent(fn(Request $request) => $request->url() == 'https://api.indexnow.org/indexnow?key='
+        . config('index-now.key')
+        . '&url=' . urlencode('https://dejacht.nl'));
 });

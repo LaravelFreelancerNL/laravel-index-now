@@ -20,17 +20,9 @@ class IndexNowSubmitJob implements ShouldBeUnique, ShouldQueue
     use SerializesModels;
 
     /**
-     * @var string|string[]
-     */
-    protected array|string $urls;
-
-    /**
      * @param  string|string[]  $urls
      */
-    public function __construct(array|string $urls)
-    {
-        $this->urls = $urls;
-    }
+    public function __construct(protected array|string $urls) {}
 
     public function handle(): void
     {
