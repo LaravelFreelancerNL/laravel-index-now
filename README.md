@@ -46,8 +46,9 @@ return [
 - _host_: the hostname for which you will submit pages to the search engine, without scheme or path
 - _key_: the unique key for this domain (you will generate one in the next step)
 - _key-location_: the directory and/or prefix to the key file within your public site; the package derives the public
-  `keyLocation` URL from `APP_URL`
-- _log-failed-submits_: disable logging of submit attempts in non-production environments
+  `keyLocation` URL from `APP_URL`, or falls back to `https://<host>` when `APP_URL` is empty
+- _log-failed-submits_: whether to log skipped submit attempts when the current environment does not match
+  `_production-env_`
 - _production-env_: the name of the production environment; 
 - _search-engine_: the domain of the specific search engine you wish to submit too. 
 - _delay_: the delay in seconds for delayed page submissions.
@@ -63,7 +64,7 @@ This will create a keyfile in the public_dir() of your project and output the ke
 Copy the displayed key and place it in your .env file.
 
 If you've set a key location in the config it will be prefixed to the file, and the package will derive the public
-`keyLocation` URL from your `APP_URL`.
+`keyLocation` URL from your `APP_URL`, or fall back to `https://<host>` when `APP_URL` is empty.
 
 Running this command multiple times will generate a new key and key file.
 
@@ -80,6 +81,8 @@ If you use an alternative name for your production environment you can set INDEX
 to match. 
 
 You can disable this by setting INDEXNOW_PRODUCTION_ENV to false.
+
+If you want to keep the environment check but suppress those log entries, set INDEXNOW_LOG_FAILED_SUBMITS to false.
 
 ## Usage
 You can submit one or more pages per request by calling the facade and passing the url(s) to the submit method.
